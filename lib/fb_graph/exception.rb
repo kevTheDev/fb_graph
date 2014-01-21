@@ -5,6 +5,10 @@ module FbGraph
 
     class << self
       def handle_structured_response(status, details, headers)
+        puts "status: #{status}"
+        puts "details: #{details}"
+        puts "headers: #{headers}"
+        
         if (error = details[:error])
           klass = klass_for_header(headers, error) || klass_for_structured_body(error)
           message = [error[:type], error[:message]].join(' :: ')
